@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rota Livre: Relatório Interativo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Tech -->
+    <!-- Application Structure Plan: A single-page, top-to-bottom narrative structure was chosen to guide the user through a logical story: Problem, Solution, Process, Impact, and Roadmap. This approach simplifies the academic report into a more digestible and engaging format, making it accessible to a wider audience. Key interactions include clickable tabs for the methodology and interactive charts for the projected results, allowing users to explore details without being overwhelmed. This structure prioritizes clarity and user flow over mirroring the original document's layout. -->
+    <!-- Visualization & Content Choices: Report Info: Projected reduction in response time & increase in driver awareness -> Goal: Compare & Inform -> Viz/Presentation Method: Bar chart for before/after comparison & Donut chart for percentage representation -> Interaction: Hover tooltips on charts -> Justification: These chart types are ideal for clearly communicating the key quantitative benefits of the project. | Report Info: 5 stages of Design Thinking -> Goal: Organize -> Viz/Presentation Method: Tabbed content view -> Interaction: Click to reveal stage details -> Justification: A space-efficient and interactive way to present distinct but related sets of information. | Report Info: How the system works -> Goal: Organize/Explain Process -> Viz/Presentation Method: HTML/CSS diagram -> Interaction: Visual flow, no clicks needed -> Justification: A simple visual diagram is the clearest way to explain the system's operational flow. All visualizations use Chart.js (Canvas) or native HTML/CSS. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .tab-active {
+            border-color: #2563eb;
+            color: #2563eb;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+        <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <span class="font-bold text-xl text-blue-700">ROTA LIVRE</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#problema" class="text-slate-600 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium">O Problema</a>
+                        <a href="#solucao" class="text-slate-600 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium">A Solução</a>
+                        <a href="#metodologia" class="text-slate-600 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium">Metodologia</a>
+                        <a href="#roadmap" class="text-slate-600 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium">Roadmap</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <section id="problema" class="text-center py-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Cada segundo conta.</h1>
+            <p class="max-w-3xl mx-auto text-lg text-slate-600">
+                Em grandes cidades, o congestionamento atrasa veículos de emergência, e os sistemas de alerta tradicionais estão perdendo eficácia. Esta demora crítica no socorro pode ser a diferença entre a vida e a morte.
+            </p>
+        </section>
+
+        <section id="solucao" class="py-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900">A Solução Inovadora: Rota Livre</h2>
+                <p class="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">Um ecossistema digital que conecta veículos de emergência aos motoristas em tempo real, através dos aplicativos de navegação que todos já usam, para criar um corredor livre de forma segura e coordenada.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-8 items-center text-center">
+                <div class="flex flex-col items-center">
+                    <div class="bg-red-100 rounded-full h-20 w-20 flex items-center justify-center text-3xl">🚑</div>
+                    <h3 class="font-semibold mt-4">1. Emergência Ativada</h3>
+                    <p class="text-sm text-slate-500 mt-1">A central (SAMU, Bombeiros) ativa o "modo de emergência" para um veículo.</p>
+                </div>
+                <div class="text-2xl text-slate-400 hidden md:block">→</div>
+                <div class="flex flex-col items-center">
+                    <div class="bg-blue-100 rounded-full h-20 w-20 flex items-center justify-center text-3xl">📡</div>
+                    <h3 class="font-semibold mt-4">2. Alerta Enviado à Nuvem</h3>
+                    <p class="text-sm text-slate-500 mt-1">A geolocalização é enviada em tempo real para a plataforma Rota Livre.</p>
+                </div>
+                <div class="text-2xl text-slate-400 hidden md:block">→</div>
+                 <div class="flex flex-col items-center">
+                    <div class="bg-yellow-100 rounded-full h-20 w-20 flex items-center justify-center text-3xl">📱</div>
+                    <h3 class="font-semibold mt-4">3. Motoristas Notificados</h3>
+                    <p class="text-sm text-slate-500 mt-1">Motoristas na rota recebem um alerta no app de navegação com instruções claras.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="metodologia" class="py-16 bg-white rounded-2xl">
+             <div class="text-center mb-12 px-4">
+                <h2 class="text-3xl font-bold text-slate-900">Metodologia Centrada no Ser Humano</h2>
+                <p class="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">O conceito foi desenvolvido utilizando Design Thinking, um processo focado em entender as necessidades reais das pessoas para criar soluções eficazes e inovadoras. Explore as etapas do nosso processo.</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="border-b border-slate-200">
+                    <nav class="-mb-px flex space-x-4 justify-center" aria-label="Tabs">
+                        <button class="tab-button tab-active whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm" data-tab="empatia">Empatia</button>
+                        <button class="tab-button text-slate-500 hover:text-slate-700 hover:border-slate-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm" data-tab="definicao">Definição</button>
+                        <button class="tab-button text-slate-500 hover:text-slate-700 hover:border-slate-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm" data-tab="ideacao">Ideação</button>
+                        <button class="tab-button text-slate-500 hover:text-slate-700 hover:border-slate-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm" data-tab="prototipagem">Prototipagem</button>
+                        <button class="tab-button text-slate-500 hover:text-slate-700 hover:border-slate-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm" data-tab="teste">Teste</button>
+                    </nav>
+                </div>
+                <div id="tab-content" class="mt-8 px-4">
+                </div>
+            </div>
+        </section>
+        
+        <section id="roadmap" class="py-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900">Roadmap de Implementação</h2>
+                <p class="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">O desenvolvimento será progressivo e iterativo, dividido em quatro fases distintas para garantir a mitigação de riscos e a validação incremental da solução.</p>
+            </div>
+            <div class="max-w-5xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-x-8 relative">
+                     <div class="absolute top-1/2 left-0 w-full h-0.5 bg-blue-200 transform -translate-y-1/2 hidden md:block"></div>
+                     <div class="relative flex flex-col items-center mb-8 md:mb-0">
+                         <div class="bg-blue-500 text-white w-12 h-12 rounded-full flex items-center justify-center z-10 font-bold text-lg">1</div>
+                         <h3 class="font-semibold mt-4 text-center">Planejamento Estratégico</h3>
+                         <p class="text-sm text-slate-500 mt-1 text-center">Análise de dados históricos e alinhamento com parceiros institucionais.</p>
+                     </div>
+                     <div class="relative flex flex-col items-center mb-8 md:mb-0">
+                         <div class="bg-blue-500 text-white w-12 h-12 rounded-full flex items-center justify-center z-10 font-bold text-lg">2</div>
+                         <h3 class="font-semibold mt-4 text-center">Desenvolvimento Técnico</h3>
+                         <p class="text-sm text-slate-500 mt-1 text-center">Construção da API de comunicação e do dashboard operacional.</p>
+                     </div>
+                     <div class="relative flex flex-col items-center mb-8 md:mb-0">
+                         <div class="bg-blue-500 text-white w-12 h-12 rounded-full flex items-center justify-center z-10 font-bold text-lg">3</div>
+                         <h3 class="font-semibold mt-4 text-center">Projeto Piloto</h3>
+                         <p class="text-sm text-slate-500 mt-1 text-center">Validação em campo em territórios específicos com monitoramento de KPIs.</p>
+                     </div>
+                     <div class="relative flex flex-col items-center">
+                         <div class="bg-blue-500 text-white w-12 h-12 rounded-full flex items-center justify-center z-10 font-bold text-lg">4</div>
+                         <h3 class="font-semibold mt-4 text-center">Avaliação e Expansão</h3>
+                         <p class="text-sm text-slate-500 mt-1 text-center">Análise dos resultados e elaboração de um plano de expansão escalável.</p>
+                     </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-800 text-white">
+        <div class="max-w-6xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center text-sm">
+            <p>&copy; 2025 Projeto Rota Livre. Uma iniciativa para cidades mais inteligentes e seguras.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const designThinkingData = {
+                empatia: {
+                    title: 'Empatia: Entendendo a Dor Real',
+                    content: 'A primeira etapa foi uma imersão profunda para compreender a angústia de quem aguarda socorro, a frustração das equipes de emergência e a incerteza dos motoristas comuns, que muitas vezes não sabem como reagir e acabam bloqueando o caminho sem intenção.'
+                },
+                definicao: {
+                    title: 'Definição: Focando no Problema Certo',
+                    content: 'Sintetizamos os aprendizados da empatia para definir um problema claro: "Como usar a tecnologia que os motoristas já possuem (smartphones com apps de navegação) para informá-los da aproximação de uma emergência de forma antecipada e instrutiva?"'
+                },
+                ideacao: {
+                    title: 'Ideação: Gerando Soluções Criativas',
+                    content: 'Em uma sessão de brainstorming, exploramos diversas ideias. A que se destacou pela viabilidade, baixo custo de adoção e potencial de escala foi a criação de uma plataforma de software intermediária (API) para conectar as frotas de emergência com os apps de navegação existentes.'
+                },
+                prototipagem: {
+                    title: 'Prototipagem: Tornando a Ideia Tangível',
+                    content: 'Transformamos o conceito em protótipos de baixa fidelidade, como o design da interface do painel de controle para as centrais de emergência e as telas (mockups) dos alertas visuais e sonoros que apareceriam no aplicativo do motorista.'
+                },
+                teste: {
+                    title: 'Teste: Validando com Usuários Reais',
+                    content: 'Apresentamos os protótipos a motoristas comuns e condutores de veículos de emergência. A aprovação foi significativa em ambos os públicos, que validaram a solução como um avanço para reduzir a ansiedade e otimizar a abertura de caminho no trânsito.'
+                }
+            };
+
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContent = document.getElementById('tab-content');
+
+            function updateTabContent(tabId) {
+                const data = designThinkingData[tabId];
+                tabContent.innerHTML = `<div class="text-center"><h3 class="text-xl font-semibold">${data.title}</h3><p class="mt-2 text-slate-600">${data.content}</p></div>`;
+            }
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('tab-active');
+                        btn.classList.add('text-slate-500', 'hover:text-slate-700', 'hover:border-slate-300');
+                    });
+                    button.classList.add('tab-active');
+                    button.classList.remove('text-slate-500', 'hover:text-slate-700', 'hover:border-slate-300');
+                    updateTabContent(button.dataset.tab);
+                });
+            });
+
+            updateTabContent('empatia');
+            
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
